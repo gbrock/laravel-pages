@@ -1,0 +1,7 @@
+# PHPStorm folder
+/.idea
+# Vendor packages
+/vendor
+# Composer recommend committing composer.lock, but I'd rather files get updated to the latest and greatest each time...
+# http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
+/composer.lock
