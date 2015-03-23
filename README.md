@@ -23,6 +23,14 @@ A **template** is the HTML defining the final document, including the positions 
 A **domain** is a category of pages residing under a [slug](http://en.wikipedia.org/wiki/Semantic_URL#Slug) and
 optionally permitting only specific templates to be used for its pages.
 
+## Installation
+
+Require the package in your `composer.json` file:
+
+```
+"gbrock/laravel-pages": "dev-master"
+```
+
 ## Goals
 
 This project is under development, but the plan is to:
