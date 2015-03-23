@@ -3,8 +3,8 @@
 (http://laravel.com/)
 [![Latest Tag](https://img.shields.io/github/tag/gbrock/laravel-pages.svg)]
 (https://github.com/gbrock/laravel-pages/releases)
-[![Build Status](https://img.shields.io/travis/gbrock/laravel-pages.svg)]
-(https://travis-ci.org/gbrock/laravel-pages)
+<!--[![Build Status](https://img.shields.io/travis/gbrock/laravel-pages.svg)]
+(https://travis-ci.org/gbrock/laravel-pages)-->
 
 A basic Laravel page CMS.  **This project is under development.**
 
