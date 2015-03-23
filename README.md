@@ -13,24 +13,27 @@ A basic Laravel page CMS.  **This project is under active development.**
 Laravel Pages is a templating, categorization, and publishing system for an 
 application's pages.  It lets you implement WYSIWYG-esque content in very dynamic ways.
 
-A **page** is a collection of HTML content,laid out in a *template* and assigned to a *domain*.
-Pages must each be assigned exactly one template and at least one domain.  If published, a page can be access via a
-public URL (determined by a combination of the domain and page's own slug).
+A **page** is a collection of HTML content, laid out in a *template* and assigned to a *domain*.
+Pages must each be assigned exactly one template and one domain.  If published, a page can be access via a
+public URL (determined by a combination of the domain's and page's slugs).
 
-A **template** is HTML defining the final document, including the positions of dynamic content (e.g. "title", "body",
-"author")
+A **template** is the HTML defining the final document, including the positions of dynamic content (e.g. "sidebar", 
+"post_content", "about_author")
 
 A **domain** is a category of pages residing under a [slug](http://en.wikipedia.org/wiki/Semantic_URL#Slug) and
-optionally permitting only specific templates.
+optionally permitting only specific templates to be used for its pages.
 
-The project is under active development, but the goal is to implement:
+This project is under active development, but the goal is to:
 
-* migrations
-* models
-* validators
-* views
-* controllers
-* assets / integration (CSS, CKEditor, javascript file uploads, and cropping mechanisms)
+1. Develop and document:
+    * migrations 
+    * models
+    * validators
+    * views
+    * controllers
+    * assets / integration (CSS, CKEditor, javascript file uploads, and cropping mechanisms)
+2. Get everything fully tested
+3. Publish examples
 
 ## License
 
