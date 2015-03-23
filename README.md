@@ -6,12 +6,12 @@
 [![Build Status](https://img.shields.io/travis/gbrock/laravel-pages.svg)]
 (https://travis-ci.org/gbrock/laravel-pages)
 
-A basic Laravel page CMS.  **This project is under active development.**
+A basic Laravel page CMS.  **This project is under development.**
 
 ## Description
 
 Laravel Pages is a templating, categorization, and publishing system for an 
-application's pages.  It lets you implement WYSIWYG-esque content in very dynamic ways.
+application's pages.  It lets you implement WYSIWYG-esque content in various dynamic ways.
 
 A **page** is a collection of HTML content, laid out in a *template* and assigned to a *domain*.
 Pages must each be assigned exactly one template and one domain.  If published, a page can be access via a
@@ -23,9 +23,11 @@ A **template** is the HTML defining the final document, including the positions 
 A **domain** is a category of pages residing under a [slug](http://en.wikipedia.org/wiki/Semantic_URL#Slug) and
 optionally permitting only specific templates to be used for its pages.
 
-This project is under active development, but the goal is to:
+## Goals
 
-1. Develop and document:
+This project is under development, but the plan is to:
+
+1. Develop and document...
     * migrations 
     * models
     * validators
