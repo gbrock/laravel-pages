@@ -6,15 +6,7 @@ class PageTemplateController extends BaseController {
      */
     public function getIndex()
     {
-        return view('gbrock.pages::index');
-    }
-
-    /**
-     * Show a template preview.
-     */
-    public function getShow()
-    {
-        return view('gbrock.pages::show');
+        return view('gbrock.pages::page_templates.index');
     }
 
     /**
@@ -22,23 +14,46 @@ class PageTemplateController extends BaseController {
      */
     public function getCreate()
     {
-        return view('gbrock.pages::create');
+        return view('gbrock.pages::page_templates.create');
+    }
+
+    /**
+     * Show a template preview.
+     *
+     * @param PageTemplate $template
+     * @return \Illuminate\View\View
+     */
+    public function getShow(PageTemplate $template)
+    {
+        return view('gbrock.pages::page_templates.show', [
+            'form_object' => $template,
+        ]);
     }
 
     /**
      * Show the template editing form.
+     *
+     * @param PageTemplate $template
+     * @return \Illuminate\View\View
      */
-    public function getUpdate()
+    public function getUpdate(PageTemplate $template)
     {
-        return view('gbrock.pages::update');
+        return view('gbrock.pages::page_templates.update', [
+            'form_object' => $template,
+        ]);
     }
 
     /**
      * Show the deletion confirmation.
+     *
+     * @param PageTemplate $template
+     * @return \Illuminate\View\View
      */
-    public function getDestroy()
+    public function getDestroy(PageTemplate $template)
     {
-        return view('gbrock.pages::destroy');
+        return view('gbrock.pages::page_templates.destroy', [
+            'form_object' => $template,
+        ]);
     }
 
     /**
@@ -53,8 +68,11 @@ class PageTemplateController extends BaseController {
     /**
      * Actually save edits to a template.
      * Validation has been handled by our service provider.
+     *
+     * @param PageTemplate $template
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function postUpdate()
+    public function postUpdate(PageTemplate $template)
     {
         return redirect()->action('');
     }
@@ -62,8 +80,11 @@ class PageTemplateController extends BaseController {
     /**
      * Actually delete a template.
      * Validation has been handled by our service provider.
+     *
+     * @param PageTemplate $template
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function postDestroy()
+    public function postDestroy(PageTemplate $template)
     {
         return redirect()->action('');
     }
