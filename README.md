@@ -10,7 +10,7 @@ A basic Laravel page CMS.  **This project is under development.**
 
 ## Description
 
-Laravel Pages is a templating, categorization, and publishing system for an 
+**Laravel Pages** is a templating, categorization, and publishing system for an 
 application's pages.  It lets you implement WYSIWYG-esque content in various dynamic ways.
 
 A **page** is a collection of HTML content, laid out in a *template* and assigned to a *domain*.
@@ -37,37 +37,33 @@ optionally permitting only specific templates to be used for its pages.
 
 ## Installation
 
-Require the package in your `composer.json` file:
-
-```
+1. Require the package in your `composer.json` file:
+    ```php
 "gbrock/laravel-pages": "dev-master"
 ```
 
-Add the service provider to `config/app.php`:
+1. Update packages:
+    ```
+composer update
+```
 
-```php
+1. Add the service provider(s) to `config/app.php`:
+   ```php
 'Gbrock\Providers\PageServiceProvider',
+'Gbrock\Providers\RouteServiceProvider', // Optional; registers routes for sample implementation
 ```
 
-(Optional) if you'd like to use the included controllers/views, also register the route provider:
-
-```php
-'Gbrock\Providers\RouteServiceProvider',
-```
-
-Publish the views, assets, and migrations:
-
-```
+1. Publish the views, assets, and migrations:
+    ```
 php artisan vendor:publish
 ```
 
-Finally, run the migrations:
-
-```
+1. Run the migrations:
+    ```
 php artisan migrate
 ```
 
-You can now access the sample implementation by browsing `/pages` in your application.
+If you installed the sample implementation, you can now access it by browsing `/pages` in your application.  Otherwise, set about implementing the page functionality into a larger application (documentation needed).
 
 
 ## License
