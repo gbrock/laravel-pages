@@ -20,7 +20,7 @@
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "database/migrations"
         ],
         "psr-4": {
             "Gbrock\\": "src/"
