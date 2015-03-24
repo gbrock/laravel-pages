@@ -3,6 +3,7 @@
 use Gbrock\Models\PageTemplate;
 use Gbrock\Http\Requests\StorePageTemplateRequest;
 use Gbrock\Repositories\PageTemplateRepository;
+
 use Illuminate\Support\Facades\Input;
 
 class PageTemplateController extends BaseController {
@@ -109,10 +110,11 @@ class PageTemplateController extends BaseController {
      * Actually save edits to a template.
      * Validation has been handled by our service provider.
      *
+     * @param StorePageTemplateRequest $request
      * @param PageTemplate $template
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postUpdate(PageTemplate $template)
+    public function postUpdate(StorePageTemplateRequest $request, PageTemplate $template)
     {
         $data = Input::only('name', 'body');
 
@@ -123,13 +125,15 @@ class PageTemplateController extends BaseController {
 
     /**
      * Actually delete a template.
-     * Validation has been handled by our service provider.
      *
      * @param PageTemplate $template
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postDestroy(PageTemplate $template)
     {
+        // Remove current domains
+        $template->domains()->detach();
+
         $template->delete();
 
         return redirect()->action('PageTemplateController@getIndex');
