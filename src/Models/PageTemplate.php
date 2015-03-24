@@ -18,4 +18,13 @@ class PageTemplate extends Model {
     {
         return $this->hasMany('Gbrock\Models\Page', 'template_id');
     }
+
+    /**
+     * The relation to the templates available to this domain.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function domains()
+    {
+        return $this->belongsToMany('Gbrock\Models\PageDomain', 'page_domain_template', 'template_id', 'domain_id');
+    }
 }
