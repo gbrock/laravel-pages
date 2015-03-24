@@ -3,6 +3,7 @@
 use Gbrock\Models\PageDomain;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider {
 
@@ -22,17 +23,6 @@ class RouteServiceProvider extends ServiceProvider {
         include $root . 'src/Http/routes.php';
 
         Route::model('page_template', 'Gbrock\Models\PageTemplate');
-        Route::bind('page_domain', function($value)
-        {
-            $found = PageDomain::where('slug', $value)->first();
-
-            if(!$found)
-            {
-                // Slug not present.
-                throw new NotFoundHttpException;
-            }
-
-            return $found;
-        });
+        Route::model('page_domain', 'Gbrock\Models\PageDomain');
     }
 }
