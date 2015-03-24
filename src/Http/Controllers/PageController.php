@@ -10,7 +10,9 @@ class PageController extends BaseController {
      */
     public function getIndex()
     {
-        return view('gbrock.pages::pages.index');
+        return view('gbrock.pages::pages.index', [
+            'rows' => [],
+        ]);
     }
 
     /**
