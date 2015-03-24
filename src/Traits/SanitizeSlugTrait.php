@@ -1,6 +1,6 @@
 <?php namespace Gbrock\Traits;
 
-trait Sluggable {
+trait SanitizeSlugTrait {
 
     /**
      * When the slug is set, sanitize it.
@@ -12,6 +12,11 @@ trait Sluggable {
         $value = trim($value, '/'); // trim outer slashes
         $value = strtolower($value); // lowercase it
         $value = preg_replace('/[^a-z0-9\/-_]/', '', $value); // replace all but the valid characters
+
+        if($value === '')
+        {
+            $value = null;
+        }
 
         $this->attributes['slug'] = $value;
     }
