@@ -1,6 +1,7 @@
 <?php namespace Gbrock\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Gbrock\Models\PageDomain;
 
 class StorePageDomainRequest extends FormRequest {
 
@@ -19,6 +20,14 @@ class StorePageDomainRequest extends FormRequest {
             'name' => 'required|alpha_num|max:64',
             'default_meta_description' => 'sometimes|max:150',
             'slug' => $this->getSlugRules(),
+            'templates' => 'sometimes|array|exists:page_templates,id',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'slug.required' => 'Required, because a domain with an empty slug already exists.',
         ];
     }
 

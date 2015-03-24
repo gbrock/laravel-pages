@@ -1,6 +1,12 @@
 <?php namespace Gbrock\Http\Controllers;
 
 use Gbrock\Models\PageDomain;
+use Gbrock\Http\Requests\StorePageDomainRequest;
+use Gbrock\Models\PageTemplate;
+use Gbrock\Repositories\PageDomainRepository;
+
+use Gbrock\Repositories\PageTemplateRepository;
+use Illuminate\Support\Facades\Input;
 
 class PageDomainController extends BaseController {
     /**
@@ -10,7 +16,9 @@ class PageDomainController extends BaseController {
      */
     public function getIndex()
     {
-        return view('gbrock.pages::page_domains.index');
+        return view('gbrock.pages::page_domains.index', [
+            'rows' => PageDomainRepository::getAll(),
+        ]);
     }
 
     /**
@@ -21,22 +29,23 @@ class PageDomainController extends BaseController {
     public function getCreate()
     {
         return view('gbrock.pages::page_domains.create', [
+            'page_templates' => PageTemplateRepository::getAll(),
             'object' => new PageDomain, // blank model so our forms have something to call
         ]);
     }
 
     /**
-     * Show the members of a domain.
+     * Show the members of a domain. Currently unwanted.
      *
      * @param PageDomain $domain
      * @return \Illuminate\View\View
      */
-    public function getShow(PageDomain $domain)
-    {
-        return view('gbrock.pages::page_domains.show', [
-            'object' => $domain,
-        ]);
-    }
+//    public function getShow(PageDomain $domain)
+//    {
+//        return view('gbrock.pages::page_domains.show', [
+//            'object' => $domain,
+//        ]);
+//    }
 
     /**
      * Show the domain editing form.
@@ -47,6 +56,7 @@ class PageDomainController extends BaseController {
     public function getUpdate(PageDomain $domain)
     {
         return view('gbrock.pages::page_domains.update', [
+            'page_templates' => PageTemplateRepository::getAll(),
             'object' => $domain,
         ]);
     }
@@ -68,23 +78,44 @@ class PageDomainController extends BaseController {
      * Actually create a new domain.
      * Validation has been handled by our service provider.
      *
+     * @param StorePageDomainRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreate()
+    public function postCreate(StorePageDomainRequest $request)
     {
-        return redirect()->action('');
+        $data = Input::only('name', 'default_meta_description', 'slug');
+
+        PageDomain::create($data);
+
+        // Save the valid templates
+        $templates = PageTemplate::whereIn('id', Input::get('templates'))->get()->all();
+        $domain->templates()->saveMany($templates);
+
+        return redirect()->action('PageDomainController@getIndex');
     }
 
     /**
      * Actually save edits to a domain.
      * Validation has been handled by our service provider.
      *
+     * @param StorePageDomainRequest $request
      * @param PageDomain $domain
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function postUpdate(PageDomain $domain)
+    public function postUpdate(StorePageDomainRequest $request, PageDomain $domain)
     {
-        return redirect()->action('');
+        $data = Input::only('name', 'default_meta_description', 'slug');
+
+        $domain->fill($data)->save();
+
+        // Remove current templates
+        $domain->templates()->detach();
+
+        // Save the valid templates
+        $templates = PageTemplate::whereIn('id', Input::get('templates'))->get()->all();
+        $domain->templates()->saveMany($templates);
+
+        return redirect()->action('PageDomainController@getIndex');
     }
 
     /**
@@ -96,6 +127,11 @@ class PageDomainController extends BaseController {
      */
     public function postDestroy(PageDomain $domain)
     {
-        return redirect()->action('');
+        // Remove current templates
+        $domain->templates()->detach();
+
+        $domain->delete();
+
+        return redirect()->action('PageDomainController@getIndex');
     }
 }
