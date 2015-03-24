@@ -23,24 +23,25 @@ class PageServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        require_once(__DIR__.'/src/validation.php');
+        $root = __DIR__.'/../../';
+        require_once($root . 'src/validation.php');
 
         // Load views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'gbrock.pages');
+        $this->loadViewsFrom($root . 'resources/views', 'gbrock.pages');
 
         // Publish views
         $this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/gbrock/pages'),
+            $root . 'resources/views' => base_path('resources/views/vendor/gbrock/pages'),
         ]);
 
         // Publish configuration
         $this->publishes([
-            __DIR__.'/../config/pages.php' => config_path('gbrock-pages.php'),
+            $root . 'config/pages.php' => config_path('gbrock-pages.php'),
         ]);
 
         // Publish migrations
         $this->publishes([
-            __DIR__.'/../database/migrations/' => base_path('/database/migrations')
+            $root . 'database/migrations/' => base_path('/database/migrations')
         ], 'migrations');
     }
 
