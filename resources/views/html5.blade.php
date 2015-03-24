@@ -8,9 +8,7 @@
 <body>
 <script>document.getElementsByTagName('body')[0].className+=' js'</script>
 @section('wrapper')
-    <div class="container">
-        @yield('content')
-    </div>
+    @yield('content')
 @show
 </body>
 </html>

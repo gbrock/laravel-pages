@@ -1,8 +1,14 @@
 <?php namespace Gbrock\Http\Controllers;
 
+use Gbrock\Models\PageTemplate;
+use Gbrock\Http\Requests\StorePageTemplateRequest;
+use Illuminate\Support\Facades\Input;
+
 class PageTemplateController extends BaseController {
     /**
      * Show all templates.
+     *
+     * @return \Illuminate\View\View
      */
     public function getIndex()
     {
@@ -11,14 +17,18 @@ class PageTemplateController extends BaseController {
 
     /**
      * Show the template creation form.
+     *
+     * @return \Illuminate\View\View
      */
     public function getCreate()
     {
-        return view('gbrock.pages::page_templates.create');
+        return view('gbrock.pages::page_templates.create', [
+            'object' => new PageTemplate, // blank model so our forms have something to call
+        ]);
     }
 
     /**
-     * Show a template preview.
+     * Show a preview of a template.
      *
      * @param PageTemplate $template
      * @return \Illuminate\View\View
@@ -26,7 +36,7 @@ class PageTemplateController extends BaseController {
     public function getShow(PageTemplate $template)
     {
         return view('gbrock.pages::page_templates.show', [
-            'form_object' => $template,
+            'object' => $template,
         ]);
     }
 
@@ -39,7 +49,7 @@ class PageTemplateController extends BaseController {
     public function getUpdate(PageTemplate $template)
     {
         return view('gbrock.pages::page_templates.update', [
-            'form_object' => $template,
+            'object' => $template,
         ]);
     }
 
@@ -52,16 +62,24 @@ class PageTemplateController extends BaseController {
     public function getDestroy(PageTemplate $template)
     {
         return view('gbrock.pages::page_templates.destroy', [
-            'form_object' => $template,
+            'object' => $template,
         ]);
     }
 
     /**
      * Actually create a new template.
      * Validation has been handled by our service provider.
+     *
+     * @param StorePageTemplateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function postCreate()
+    public function postCreate(StorePageTemplateRequest $request)
     {
+        $data = Input::only('name', 'body');
+        $new = PageTemplate::create($data);
+
+        dd($new);
+
         return redirect()->action('');
     }
 
