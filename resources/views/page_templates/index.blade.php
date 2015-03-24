@@ -13,11 +13,18 @@
 
     @if(count($rows))
         @foreach($rows as $row)
-            {{ $row->name }}
-            <a href="{{ action('PageTemplateController@getUpdate', $row->id) }}">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            </a>
-
+            <div class="">
+                {{ $row->name }}
+                {{--<a href="{{ action('PageTemplateController@getShow', $row->id) }}">--}}
+                    {{--<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>--}}
+                {{--</a>--}}
+                <a href="{{ action('PageTemplateController@getUpdate', $row->id) }}">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                </a>
+                <a href="{{ action('PageTemplateController@getDestroy', $row->id) }}">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </a>
+            </div>
         @endforeach
         {!! $rows->render() !!}
     @else

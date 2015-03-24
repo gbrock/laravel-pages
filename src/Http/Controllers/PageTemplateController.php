@@ -41,17 +41,17 @@ class PageTemplateController extends BaseController {
     }
 
     /**
-     * Show a preview of a template.
+     * Show a preview of a template.  Currently unwanted.
      *
      * @param PageTemplate $template
      * @return \Illuminate\View\View
      */
-    public function getShow(PageTemplate $template)
-    {
-        return view('gbrock.pages::page_templates.show', [
-            'object' => $template,
-        ]);
-    }
+//    public function getShow(PageTemplate $template)
+//    {
+//        return view('gbrock.pages::page_templates.show', [
+//            'object' => $template,
+//        ]);
+//    }
 
     /**
      * Show the template editing form.
@@ -130,6 +130,8 @@ class PageTemplateController extends BaseController {
      */
     public function postDestroy(PageTemplate $template)
     {
+        $template->delete();
+
         return redirect()->action('PageTemplateController@getIndex');
     }
 }
