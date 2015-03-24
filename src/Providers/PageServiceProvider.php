@@ -11,10 +11,6 @@ class PageServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        $this->app->bindShared('gbrock.pages', function($app)
-        {
-            return new Pages($app['config']['gbrock']['pages']);
-        });
     }
 
     /**
@@ -24,7 +20,9 @@ class PageServiceProvider extends ServiceProvider {
     public function boot()
     {
         $root = __DIR__.'/../../';
-        require_once($root . 'src/validation.php');
+
+        // Load custom validation rules
+        include $root . 'src/validation.php';
 
         // Load views
         $this->loadViewsFrom($root . 'resources/views', 'gbrock.pages');
