@@ -2,6 +2,7 @@
 
 use Gbrock\Models\PageTemplate;
 use Gbrock\Http\Requests\StorePageTemplateRequest;
+use Gbrock\Repositories\PageTemplateRepository;
 use Illuminate\Support\Facades\Input;
 
 class PageTemplateController extends BaseController {
@@ -12,7 +13,9 @@ class PageTemplateController extends BaseController {
      */
     public function getIndex()
     {
-        return view('gbrock.pages::page_templates.index');
+        return view('gbrock.pages::page_templates.index', [
+            'rows' => PageTemplateRepository::getAll(),
+        ]);
     }
 
     /**
@@ -23,6 +26,16 @@ class PageTemplateController extends BaseController {
     public function getCreate()
     {
         return view('gbrock.pages::page_templates.create', [
+            'css' => [
+                asset('vendor/gbrock/pages/codemirror/codemirror.css'), // CSS for the JS-based code editor
+                asset('vendor/gbrock/pages/codemirror/theme/pastel-on-dark.css'), // Codemirror Theme
+            ],
+            'js' => [
+                'https://code.jquery.com/jquery-1.11.2.min.js', // jQuery
+                asset('vendor/gbrock/pages/codemirror/codemirror.js'), // The JS-based code editor
+                asset('vendor/gbrock/pages/codemirror/mode/xml/xml.js'), // HTML mode for Codemirror
+                asset('vendor/gbrock/pages/js/code-editor.js'), // Our initialization script
+            ],
             'object' => new PageTemplate, // blank model so our forms have something to call
         ]);
     }
@@ -49,6 +62,16 @@ class PageTemplateController extends BaseController {
     public function getUpdate(PageTemplate $template)
     {
         return view('gbrock.pages::page_templates.update', [
+            'css' => [
+                asset('vendor/gbrock/pages/codemirror/codemirror.css'), // CSS for the JS-based code editor
+                asset('vendor/gbrock/pages/codemirror/theme/pastel-on-dark.css'), // Codemirror Theme
+            ],
+            'js' => [
+                'https://code.jquery.com/jquery-1.11.2.min.js', // jQuery
+                asset('vendor/gbrock/pages/codemirror/codemirror.js'), // The JS-based code editor
+                asset('vendor/gbrock/pages/codemirror/mode/xml/xml.js'), // HTML mode for Codemirror
+                asset('vendor/gbrock/pages/js/code-editor.js'), // Our initialization script
+            ],
             'object' => $template,
         ]);
     }
@@ -76,11 +99,10 @@ class PageTemplateController extends BaseController {
     public function postCreate(StorePageTemplateRequest $request)
     {
         $data = Input::only('name', 'body');
-        $new = PageTemplate::create($data);
 
-        dd($new);
+        PageTemplate::create($data);
 
-        return redirect()->action('');
+        return redirect()->action('PageTemplateController@getIndex');
     }
 
     /**
@@ -92,7 +114,11 @@ class PageTemplateController extends BaseController {
      */
     public function postUpdate(PageTemplate $template)
     {
-        return redirect()->action('');
+        $data = Input::only('name', 'body');
+
+        $template->fill($data)->save();
+
+        return redirect()->action('PageTemplateController@getIndex');
     }
 
     /**
@@ -104,6 +130,6 @@ class PageTemplateController extends BaseController {
      */
     public function postDestroy(PageTemplate $template)
     {
-        return redirect()->action('');
+        return redirect()->action('PageTemplateController@getIndex');
     }
 }

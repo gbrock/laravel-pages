@@ -12,9 +12,19 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.copy('node_modules/codemirror/lib', 'public/assets/vendor/codemirror');
-    mix.copy('node_modules/codemirror/theme', 'public/assets/vendor/codemirror/theme');
-    mix.copy('node_modules/codemirror/mode', 'public/assets/vendor/codemirror/mode');
-    mix.copy('node_modules/codemirror/addon', 'public/assets/vendor/codemirror/addon');
-    mix.copy('node_modules/codemirror/keymap', 'public/assets/vendor/codemirror/keymap');
+
+    // Our styles
+    mix.less('app.less', 'build/assets/css');
+
+    // Our scripts
+    mix.scripts([
+        'code-editor.js',
+    ], 'build/assets/js/code-editor.js');
+
+    // CodeMirror via NPM
+    mix.copy('node_modules/codemirror/lib', 'build/assets/codemirror');
+    mix.copy('node_modules/codemirror/theme', 'build/assets/codemirror/theme');
+    mix.copy('node_modules/codemirror/mode', 'build/assets/codemirror/mode');
+    mix.copy('node_modules/codemirror/addon', 'build/assets/codemirror/addon');
+    mix.copy('node_modules/codemirror/keymap', 'build/assets/codemirror/keymap');
 });

@@ -10,4 +10,19 @@
             </a>
         </div>
     </div>
+
+    @if(count($rows))
+        @foreach($rows as $row)
+            {{ $row->name }}
+            <a href="{{ action('PageTemplateController@getUpdate', $row->id) }}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </a>
+
+        @endforeach
+        {!! $rows->render() !!}
+    @else
+        <div class="alert alert-info">
+            There doesn't seem to be anything here.
+        </div>
+    @endif
 @overwrite

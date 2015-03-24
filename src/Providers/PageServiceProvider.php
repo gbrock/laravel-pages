@@ -41,6 +41,11 @@ class PageServiceProvider extends ServiceProvider {
         $this->publishes([
             $root . 'database/migrations/' => base_path('/database/migrations')
         ], 'migrations');
+
+        // Publish assets
+        $this->publishes([
+            $root . 'build/assets' => public_path('vendor/gbrock/pages'),
+        ], 'public');
     }
 
 }

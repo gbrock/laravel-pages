@@ -1,6 +1,6 @@
 <?php namespace Gbrock\Providers;
 
-use Gbrock\Models\PageTemplate;
+use Gbrock\Models\PageDomain;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -21,9 +21,10 @@ class RouteServiceProvider extends ServiceProvider {
 
         include $root . 'src/Http/routes.php';
 
-        Route::bind('page_template', function($value)
+        Route::model('page_template', 'Gbrock\Models\PageTemplate');
+        Route::bind('page_domain', function($value)
         {
-            $found = PageTemplate::where('slug', $value)->first();
+            $found = PageDomain::where('slug', $value)->first();
 
             if(!$found)
             {
