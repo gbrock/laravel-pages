@@ -1,6 +1,6 @@
-<?php namespace Gbrock\Models;
+<?php namespace Gbrock\Pages\Models;
 
-use Gbrock\Traits\SanitizeSlugTrait;
+use Gbrock\Pages\Traits\SanitizeSlugTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class PageDomain extends Model {
@@ -19,7 +19,7 @@ class PageDomain extends Model {
      */
     public function pages()
     {
-        return $this->hasMany('Gbrock\Models\Page', 'domain_id');
+        return $this->hasMany('Gbrock\Pages\Models\Page', 'domain_id');
     }
 
     /**
@@ -28,6 +28,6 @@ class PageDomain extends Model {
      */
     public function templates()
     {
-        return $this->belongsToMany('Gbrock\Models\PageTemplate', 'page_domain_template', 'domain_id', 'template_id');
+        return $this->belongsToMany('Gbrock\Pages\Models\PageTemplate', 'page_domain_template', 'domain_id', 'template_id');
     }
 }

@@ -1,6 +1,6 @@
-<?php namespace Gbrock\Repositories;
+<?php namespace Gbrock\Pages\Repositories;
 
-use Gbrock\Models\PageTemplate;
+use Gbrock\Pages\Models\PageTemplate;
 
 class PageTemplateRepository {
 

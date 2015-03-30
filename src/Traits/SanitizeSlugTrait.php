@@ -1,4 +1,4 @@
-<?php namespace Gbrock\Traits;
+<?php namespace Gbrock\Pages\Traits;
 
 trait SanitizeSlugTrait {
 

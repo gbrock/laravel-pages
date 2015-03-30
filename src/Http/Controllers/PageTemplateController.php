@@ -1,8 +1,8 @@
-<?php namespace Gbrock\Http\Controllers;
+<?php namespace Gbrock\Pages\Http\Controllers;
 
-use Gbrock\Models\PageTemplate;
-use Gbrock\Http\Requests\StorePageTemplateRequest;
-use Gbrock\Repositories\PageTemplateRepository;
+use Gbrock\Pages\Models\PageTemplate;
+use Gbrock\Pages\Http\Requests\StorePageTemplateRequest;
+use Gbrock\Pages\Repositories\PageTemplateRepository;
 
 use Illuminate\Support\Facades\Input;
 
@@ -27,16 +27,6 @@ class PageTemplateController extends BaseController {
     public function getCreate()
     {
         return view('gbrock.pages::page_templates.create', [
-            'css' => [
-                asset('vendor/gbrock/pages/codemirror/codemirror.css'), // CSS for the JS-based code editor
-                asset('vendor/gbrock/pages/codemirror/theme/pastel-on-dark.css'), // Codemirror Theme
-            ],
-            'js' => [
-                'https://code.jquery.com/jquery-1.11.2.min.js', // jQuery
-                asset('vendor/gbrock/pages/codemirror/codemirror.js'), // The JS-based code editor
-                asset('vendor/gbrock/pages/codemirror/mode/xml/xml.js'), // HTML mode for Codemirror
-                asset('vendor/gbrock/pages/js/code-editor.js'), // Our initialization script
-            ],
             'object' => new PageTemplate, // blank model so our forms have something to call
         ]);
     }
@@ -63,16 +53,6 @@ class PageTemplateController extends BaseController {
     public function getUpdate(PageTemplate $template)
     {
         return view('gbrock.pages::page_templates.update', [
-            'css' => [
-                asset('vendor/gbrock/pages/codemirror/codemirror.css'), // CSS for the JS-based code editor
-                asset('vendor/gbrock/pages/codemirror/theme/pastel-on-dark.css'), // Codemirror Theme
-            ],
-            'js' => [
-                'https://code.jquery.com/jquery-1.11.2.min.js', // jQuery
-                asset('vendor/gbrock/pages/codemirror/codemirror.js'), // The JS-based code editor
-                asset('vendor/gbrock/pages/codemirror/mode/xml/xml.js'), // HTML mode for Codemirror
-                asset('vendor/gbrock/pages/js/code-editor.js'), // Our initialization script
-            ],
             'object' => $template,
         ]);
     }

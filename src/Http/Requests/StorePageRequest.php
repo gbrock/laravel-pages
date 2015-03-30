@@ -1,4 +1,4 @@
-<?php namespace Gbrock\Http\Requests;
+<?php namespace Gbrock\Pages\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

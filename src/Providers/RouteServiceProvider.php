@@ -1,6 +1,6 @@
-<?php namespace Gbrock\Providers;
+<?php namespace Gbrock\Pages\Providers;
 
-use Gbrock\Models\PageDomain;
+use Gbrock\Pages\Models\PageDomain;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -22,7 +22,7 @@ class RouteServiceProvider extends ServiceProvider {
 
         include $root . 'src/Http/routes.php';
 
-        Route::model('page_template', 'Gbrock\Models\PageTemplate');
-        Route::model('page_domain', 'Gbrock\Models\PageDomain');
+        Route::model('page_template', 'Gbrock\Pages\Models\PageTemplate');
+        Route::model('page_domain', 'Gbrock\Pages\Models\PageDomain');
     }
 }

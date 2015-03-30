@@ -1,11 +1,11 @@
-<?php namespace Gbrock\Http\Controllers;
+<?php namespace Gbrock\Pages\Http\Controllers;
 
-use Gbrock\Models\PageDomain;
-use Gbrock\Http\Requests\StorePageDomainRequest;
-use Gbrock\Models\PageTemplate;
-use Gbrock\Repositories\PageDomainRepository;
+use Gbrock\Pages\Models\PageDomain;
+use Gbrock\Pages\Http\Requests\StorePageDomainRequest;
+use Gbrock\Pages\Models\PageTemplate;
+use Gbrock\Pages\Repositories\PageDomainRepository;
 
-use Gbrock\Repositories\PageTemplateRepository;
+use Gbrock\Pages\Repositories\PageTemplateRepository;
 use Illuminate\Support\Facades\Input;
 
 class PageDomainController extends BaseController {

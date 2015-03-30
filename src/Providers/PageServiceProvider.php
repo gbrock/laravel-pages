@@ -1,6 +1,5 @@
-<?php namespace Gbrock\Providers;
+<?php namespace Gbrock\Pages\Providers;
 
-use Gbrock\Pages;
 use Illuminate\Support\ServiceProvider;
 
 class PageServiceProvider extends ServiceProvider {

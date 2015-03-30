@@ -1,4 +1,4 @@
-<?php namespace Gbrock\Models;
+<?php namespace Gbrock\Pages\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,7 +16,7 @@ class PageTemplate extends Model {
      */
     public function pages()
     {
-        return $this->hasMany('Gbrock\Models\Page', 'template_id');
+        return $this->hasMany('Gbrock\Pages\Models\Page', 'template_id');
     }
 
     /**
@@ -25,6 +25,6 @@ class PageTemplate extends Model {
      */
     public function domains()
     {
-        return $this->belongsToMany('Gbrock\Models\PageDomain', 'page_domain_template', 'template_id', 'domain_id');
+        return $this->belongsToMany('Gbrock\Pages\Models\PageDomain', 'page_domain_template', 'template_id', 'domain_id');
     }
 }

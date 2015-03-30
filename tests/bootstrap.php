@@ -1,4 +1,4 @@
 <?php
 
 $loader = require __DIR__ . "/../vendor/autoload.php";
-$loader->add('Gbrock\\', __DIR__);
+$loader->add('Gbrock\\Pages\\', __DIR__);

@@ -1,6 +1,6 @@
-<?php namespace Gbrock\Models;
+<?php namespace Gbrock\Pages\Models;
 
-use Gbrock\Traits\SanitizeSlugTrait;
+use Gbrock\Pages\Traits\SanitizeSlugTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model {

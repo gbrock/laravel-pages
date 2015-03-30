@@ -1,7 +1,7 @@
-<?php namespace Gbrock\Http\Requests;
+<?php namespace Gbrock\Pages\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Gbrock\Models\PageDomain;
+use Gbrock\Pages\Models\PageDomain;
 
 class StorePageDomainRequest extends FormRequest {
 

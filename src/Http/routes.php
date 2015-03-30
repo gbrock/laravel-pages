@@ -1,5 +1,5 @@
 <?php
-$namespace = 'Gbrock\Http\Controllers\\';
+$namespace = 'Gbrock\Pages\Http\Controllers\\';
 
 Route::group(['prefix' => 'pages'], function() use ($namespace)
 {

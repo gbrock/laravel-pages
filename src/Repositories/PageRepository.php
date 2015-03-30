@@ -1,4 +1,4 @@
-<?php namespace Gbrock\Repositories;
+<?php namespace Gbrock\Pages\Repositories;
 
 class PageRepository {
     public function renderTemplate($value)

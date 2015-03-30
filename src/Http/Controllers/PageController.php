@@ -1,6 +1,6 @@
-<?php namespace Gbrock\Http\Controllers;
+<?php namespace Gbrock\Pages\Http\Controllers;
 
-use Gbrock\Models\Page;
+use Gbrock\Pages\Models\Page;
 
 class PageController extends BaseController {
     /**
