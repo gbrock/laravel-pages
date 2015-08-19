@@ -1,4 +1,4 @@
-# Pages <!--[![Build Status](https://travis-ci.org/gbrock/laravel-pages.svg?branch=master)](https://travis-ci.org/gbrock/laravel-pages)-->
+# Pages [![Build Status](https://travis-ci.org/gbrock/laravel-pages.svg?branch=rewrite)](https://travis-ci.org/gbrock/laravel-pages)
 
 A [Laravel 5.1](http://laravel.com/docs/5.1) package designed to add pages to your Laravel application.  A page is just
 **content** defined by specific URL, or **slug**.  A page may or may not be **published**.
