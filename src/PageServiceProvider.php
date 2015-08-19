@@ -12,6 +12,32 @@ class PageServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/pages.php', 'pages'
+        );
 
+        $this->app->register(\Cviebrock\EloquentSluggable\SluggableServiceProvider::class);
+    }
+
+    /**
+     * Perform post-registration booting of services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+
+        // Publish configuration
+        $this->publishes([
+            __DIR__.'/../config/pages.php' => config_path('pages.php'),
+        ], 'config');
+
+        // Publish migrations
+        $this->publishes([
+            __DIR__.'/Migrations/' => database_path('migrations')
+        ], 'migrations');
+
+        // Load views
+//        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contactable');
     }
 }
