@@ -22,7 +22,7 @@ class Page extends Model implements SluggableInterface {
      * The attributes that are mass assignable.
      * @var array
      */
-    protected $fillable = ['title', 'slug', 'meta_description', 'content', 'public', 'public_before', 'public_after'];
+    protected $fillable = ['title', 'slug', 'content', 'public', 'public_before', 'public_after'];
 
     /**
      * The attributes that should be casted to native types.

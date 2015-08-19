@@ -18,8 +18,8 @@ class CreatePagesTable extends Migration {
 
             $table->string('title')->nullable();
             $table->string('slug')->unique();
-            $table->string('description', 160)->nullable();
             $table->longText('content')->nullable();
+
             $table->boolean('public')->default(0);
             $table->date('public_before')->nullable();
             $table->date('public_after')->nullable();
