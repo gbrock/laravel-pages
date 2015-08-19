@@ -16,7 +16,7 @@ class PageTest extends DatabaseTestCase
         $this->seeInDatabase('pages', ['title' => 'Hello, Test']);
     }
 
-    function test_page_is_available_publicly()
+    function test_page_is_public()
     {
         Page::create([
             'title'   => 'Beam Me Up',
@@ -28,7 +28,23 @@ class PageTest extends DatabaseTestCase
         $this->visit('/about')->see('All About Grungions');
     }
 
-    function test_page_publishing_reacts_properly()
+    function test_page_excerpts()
+    {
+        $htmlContent = "<p><strong>Mr. and Mrs. Dursley</strong>, of number four, Privet Drive, were proud to say " .
+            " that they were perfectly normal, thank you very much.  They were the last people you'd expect to be " .
+            " involved in anything strange or mysterious, because they just didn't hold with such nonsense.</p>";
+
+        $expectedExcerpt = "Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were" .
+            " perfectly normal, thank you very much. They were the&hellip;";
+
+        $page = Page::create([
+            'content' => $htmlContent,
+        ]);
+
+        $this->assertEquals($expectedExcerpt, $page->excerpt);
+    }
+
+    function test_page_publishing()
     {
         Page::create(['title' => 'Terra', 'public' => true]);
         Page::create(['title' => 'Locke', 'public_after' => $this->today('-1 day')]);

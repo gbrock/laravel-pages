@@ -7,12 +7,17 @@ trait Excerptable {
     public function getExcerptAttribute()
     {
         $content = $this->getAttribute($this->getExcerptField());
-        return $this->makeExcerpt($content, $this->excerpt_character_limit);
+        return $this->makeExcerpt($content, $this->getExcerptCharacterLimit());
     }
 
     protected function getExcerptField()
     {
         return isset($this->excerptField) ? $this->excerptField : 'content';
+    }
+
+    protected function getExcerptCharacterLimit()
+    {
+        return isset($this->excerptCharacterLimit) ? (int) $this->excerptCharacterLimit : 140;
     }
 
     protected function makeExcerpt($html, $character_limit)
@@ -40,7 +45,7 @@ trait Excerptable {
             }
 
             $check .= array_shift($words);
-        }
+        };
 
         return trim($str) . '&hellip;';
     }
