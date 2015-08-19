@@ -11,12 +11,12 @@ trait Domainable {
      */
     public static function bootDomainable()
     {
-        if(!empty(self::$domain))
+        if(!empty(static::$domain))
         {
             static::addGlobalScope(new PageDomainScope);
         }
 
-        if(!empty(self::$subdomains))
+        if(!empty(static::$subdomains))
         {
             static::addGlobalScope(new IgnorePageDomainScope);
         }
