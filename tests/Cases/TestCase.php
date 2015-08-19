@@ -2,7 +2,7 @@
 
 namespace Gbrock\Pages\Tests\Cases;
 
-use Gbrock\Pages\PageServiceProvider;
+use Gbrock\Pages\Providers\PageServiceProvider;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase

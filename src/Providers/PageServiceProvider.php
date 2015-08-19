@@ -1,6 +1,6 @@
 <?php
 
-namespace Gbrock\Pages;
+namespace Gbrock\Pages\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,7 @@ class PageServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/pages.php', 'pages'
+            __DIR__.'/../../config/pages.php', 'pages'
         );
 
         $this->app->register(\Cviebrock\EloquentSluggable\SluggableServiceProvider::class);
@@ -29,12 +29,12 @@ class PageServiceProvider extends ServiceProvider {
 
         // Publish configuration
         $this->publishes([
-            __DIR__.'/../config/pages.php' => config_path('pages.php'),
+            __DIR__.'/../../config/pages.php' => config_path('pages.php'),
         ], 'config');
 
         // Publish migrations
         $this->publishes([
-            __DIR__.'/Migrations/' => database_path('migrations')
+            __DIR__.'/../Migrations/' => database_path('migrations')
         ], 'migrations');
 
         // Load views
