@@ -1,3 +1,15 @@
+@section('styles')
+    {!! HTML::style(asset('vendor/gbrock/pages/codemirror/codemirror.css')) !!}
+    {!! HTML::style(asset('vendor/gbrock/pages/codemirror/theme/pastel-on-dark.css')) !!}
+@overwrite
+
+@section('scripts')
+    {!! HTML::script('https://code.jquery.com/jquery-1.11.2.min.js') !!}
+    {!! HTML::script(asset('vendor/gbrock/pages/codemirror/codemirror.js')) !!}
+    {!! HTML::script(asset('vendor/gbrock/pages/codemirror/mode/xml/xml.js')) !!}
+    {!! HTML::script(asset('vendor/gbrock/pages/js/code-editor.js')) !!}
+@overwrite
+
 <div class="form-group{{ $errors->first('name') ? ' has-error' : '' }}">
     <label for="pageTemplateName">Name</label>
     <input type="text" name="name" class="form-control" id="pageTemplateName" placeholder="Enter name" value="{{ Input::old('name', $object->name) }}">

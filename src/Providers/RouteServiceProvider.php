@@ -7,6 +7,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class RouteServiceProvider extends ServiceProvider {
 
+    protected $namespace = 'Gbrock\Pages\Http\Controllers';
+
     /**
      * Register the service provider.
      *

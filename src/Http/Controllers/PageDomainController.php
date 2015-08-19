@@ -85,7 +85,7 @@ class PageDomainController extends BaseController {
     {
         $data = Input::only('name', 'default_meta_description', 'slug');
 
-        PageDomain::create($data);
+        $domain = PageDomain::create($data);
 
         // Save the valid templates
         $templates = PageTemplate::whereIn('id', Input::get('templates'))->get()->all();

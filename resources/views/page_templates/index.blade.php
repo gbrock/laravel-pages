@@ -11,25 +11,8 @@
         </div>
     </div>
 
-    @if(count($rows))
-        @foreach($rows as $row)
-            <div class="">
-                {{ $row->name }}
-                {{--<a href="{{ action('PageTemplateController@getShow', $row->id) }}">--}}
-                    {{--<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>--}}
-                {{--</a>--}}
-                <a href="{{ action('PageTemplateController@getUpdate', $row->id) }}">
-                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                </a>
-                <a href="{{ action('PageTemplateController@getDestroy', $row->id) }}">
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                </a>
-            </div>
-        @endforeach
-        {!! $rows->render() !!}
-    @else
-        <div class="alert alert-info">
-            There doesn't seem to be anything here.
-        </div>
-    @endif
+    {!! $table->addColumn('links', '&nbsp;', function($row) {
+        return '<a href="' . action('PageTemplateController@getUpdate', $row->id) . '"><span class="glyphicon glyphicon-pencil"></span>Edit</a>';
+    }) !!}
+    {!! $table->render() !!}
 @overwrite

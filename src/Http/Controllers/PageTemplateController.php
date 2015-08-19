@@ -3,6 +3,7 @@
 use Gbrock\Pages\Models\PageTemplate;
 use Gbrock\Pages\Http\Requests\StorePageTemplateRequest;
 use Gbrock\Pages\Repositories\PageTemplateRepository;
+use Table;
 
 use Illuminate\Support\Facades\Input;
 
@@ -14,8 +15,12 @@ class PageTemplateController extends BaseController {
      */
     public function getIndex()
     {
+        $rows = PageTemplateRepository::getTable();
+
+        $table = Table::create($rows, ['id', 'name']);
+
         return view('gbrock.pages::page_templates.index', [
-            'rows' => PageTemplateRepository::getAll(),
+            'table' => $table,
         ]);
     }
 
