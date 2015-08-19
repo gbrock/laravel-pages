@@ -17,6 +17,7 @@ class PageServiceProvider extends ServiceProvider {
         );
 
         $this->app->register(\Cviebrock\EloquentSluggable\SluggableServiceProvider::class);
+        $this->app->register(\Gbrock\Pages\Providers\PageRouteServiceProvider::class);
     }
 
     /**
@@ -38,6 +39,6 @@ class PageServiceProvider extends ServiceProvider {
         ], 'migrations');
 
         // Load views
-//        $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'contactable');
+        $this->loadViewsFrom(__DIR__.'/../Views/', 'pages');
     }
 }

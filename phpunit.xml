@@ -11,6 +11,9 @@
          syntaxCheck="false"
          verbose="true"
         >
+    <php>
+        <env name="APP_KEY" value="AppKeyExactlyThirtyTwoCharacters" />
+    </php>
     <testsuites>
         <testsuite name="Package Test Suite">
             <directory suffix=".php">./tests/</directory>

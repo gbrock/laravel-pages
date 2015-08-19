@@ -69,4 +69,17 @@ class Page extends Model implements SluggableInterface {
 
         return $query->where('slug', 'like', $domainQuery);
     }
+
+    /**
+     * Render the page using the default view.
+     *
+     * @param bool $viewFile
+     * @return \Illuminate\View\View
+     */
+    public function render($viewFile = false)
+    {
+        return view($viewFile ?: config('pages.template'), [
+            'page' => $this,
+        ]);
+    }
 }

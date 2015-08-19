@@ -15,4 +15,16 @@ class PageTest extends DatabaseTestCase
 
         $this->seeInDatabase('pages', ['title' => 'Hello, Test']);
     }
+
+    function test_page_is_available_publicly()
+    {
+        $page = Page::create([
+            'title' => 'Beam Me Up',
+            'slug' => 'about',
+            'content' => '<p>All About Grungions</p>',
+            'public' => true,
+        ]);
+
+        $this->visit('/about')->see('All About Grungions');
+    }
 }
