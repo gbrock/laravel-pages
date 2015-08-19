@@ -55,19 +55,19 @@ trait Publishable {
 
     protected function setPublicAttribute($value)
     {
-        switch($value)
+        switch(TRUE)
         {
-            case FALSE:
-            case 'not_public':
+            case $value === false:
+            case $value === 'not_public':
                 $this->attributes['public'] = 0;
                 break;
-            case TRUE:
-            case 'public':
+            case $value === true:
+            case $value === 'public':
                 $this->attributes['public'] = 1;
                 break;
         }
 
-        if($value == 'not_public' || $value == 'public')
+        if($value == 'not_public' || $value == 'public' || is_bool($value))
         {
             $this->basic_public_set = true;
             $this->attributes['public_after'] = null;

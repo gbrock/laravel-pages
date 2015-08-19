@@ -20,6 +20,6 @@ class PageRouteServiceProvider extends RouteServiceProvider
             return Page::where('slug', $slug)
                 ->firstOrFail()
                 ->render();
-        })->where('pageSlug', '.+');
+        })->where('slug', '.+');
     }
 }

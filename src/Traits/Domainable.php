@@ -9,14 +9,14 @@ trait Domainable {
      *
      * @return void
      */
-    public static function bootPageDomain()
+    public static function bootDomainable()
     {
-        if(defined('static::PAGE_DOMAIN'))
+        if(!empty(self::$domain))
         {
             static::addGlobalScope(new PageDomainScope);
         }
 
-        if(!empty(self::$pageSubdomains))
+        if(!empty(self::$subdomains))
         {
             static::addGlobalScope(new IgnorePageDomainScope);
         }
@@ -24,12 +24,12 @@ trait Domainable {
 
     public static function getPageDomain()
     {
-        return !empty(static::$pageDomain) ? static::$pageDomain : '';
+        return !empty(static::$domain) ? trim(static::$domain, '\\/') : '';
     }
 
     public static function getPageSubdomains()
     {
-        return !empty(static::$pageSubdomains) ? static::$pageSubdomains : [];
+        return !empty(static::$subdomains) ? static::$subdomains : [];
     }
 
     public function getForcedDomainAttribute()
@@ -56,7 +56,7 @@ trait Domainable {
 
         if (substr($slug, 0, strlen($domain)) != $domain)
         {
-            $slug = $domain . $slug;
+            $slug = $domain . '/' . $slug;
         }
 
         $this->attributes['slug'] = $slug;

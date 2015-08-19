@@ -16,6 +16,8 @@ class Page extends Model implements SluggableInterface {
         Domainable,
         Excerptable;
 
+    protected $table = 'pages';
+
     /**
      * The attributes that are mass assignable.
      * @var array
@@ -45,7 +47,7 @@ class Page extends Model implements SluggableInterface {
      * @var array
      */
     protected $sluggable = [
-        'build_from' => ['forced_domain', 'title'],
+        'build_from' => ['title'],
         'method' => [self::class, 'generateSlug'],
     ];
 
