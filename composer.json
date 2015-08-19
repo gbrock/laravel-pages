@@ -1,0 +1,17 @@
+{
+    "name": "gbrock/laravel-pages",
+    "autoload": {
+        "psr-4": {
+            "Gbrock\\Pages\\": "src/"
+        }
+    },
+    "require-dev": {
+        "laravel/laravel": "^5.1",
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gbrock\\Pages\\Tests\\": "tests/"
+        }
+    }
+}
