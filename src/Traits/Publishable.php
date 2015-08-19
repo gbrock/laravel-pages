@@ -57,9 +57,11 @@ trait Publishable {
     {
         switch($value)
         {
+            case FALSE:
             case 'not_public':
                 $this->attributes['public'] = 0;
                 break;
+            case TRUE:
             case 'public':
                 $this->attributes['public'] = 1;
                 break;
