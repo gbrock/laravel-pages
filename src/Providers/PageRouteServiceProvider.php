@@ -17,9 +17,16 @@ class PageRouteServiceProvider extends RouteServiceProvider
     public function map(Router $router)
     {
         $router->get('{slug?}', function ($slug) {
-            return Page::where('slug', $slug)
-                ->firstOrFail()
-                ->render();
+            $page = Page::published()
+                ->where('slug', $slug)
+                ->first();
+
+            if(!$page)
+            {
+                return abort(404);
+            }
+
+            return $page->render();
         })->where('slug', '.+');
     }
 }
