@@ -16,9 +16,31 @@ class PageRouteServiceProvider extends RouteServiceProvider
      */
     public function map(Router $router)
     {
-        $router->get('{slug?}', function ($slug) {
-            $page = Page::published()
-                ->where('slug', $slug)
+        if(count(config('pages.domains')))
+        {
+            foreach(config('pages.domains') as $domain => $class)
+            {
+                $this->registerGetRoute($router, $domain, $class);
+            }
+        }
+
+        $this->registerGetRoute($router, '', config('pages.model'));
+    }
+
+    /**
+     * Adds a route for a given domain, or none at all.
+     *
+     * @param $router
+     * @param $domain
+     * @param $class
+     */
+    private function registerGetRoute($router, $domain, $class)
+    {
+        $domain = $domain ? trim($domain, '\\/') : '';
+
+        $router->get($domain . '/{slug?}', function ($slug) use ($domain, $class) {
+            $page = $class::published()
+                ->where('slug', ($domain ? $domain . '/' : '') . $slug)
                 ->first();
 
             if(!$page)
