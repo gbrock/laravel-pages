@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'template' => 'pages::default',
+    'view' => 'pages::default',
 ];

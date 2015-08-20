@@ -78,8 +78,15 @@ class Page extends Model implements SluggableInterface {
      */
     public function render($viewFile = false)
     {
-        return view($viewFile ?: config('pages.template'), [
+        $view = $viewFile ?: $this->getView();
+
+        return view($view, [
             'page' => $this,
         ]);
+    }
+
+    private function getView()
+    {
+        return isset($this->view) ? $this->view : config('pages.view');
     }
 }
