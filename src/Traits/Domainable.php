@@ -51,7 +51,7 @@ trait Domainable {
 
         if (substr($slug, 0, strlen($domain)) == $domain)
         {
-            $slug = substr($slug, strlen($domain));
+            $slug = substr($slug, strlen($domain) + 1);
         }
 
         return $slug;
@@ -66,6 +66,6 @@ trait Domainable {
             $slug = $domain . '/' . $slug;
         }
 
-        $this->attributes['slug'] = trim($slug, '\\/');
+        $this->attributes['slug'] = preg_replace('/\/+/', '/', trim($slug, '\\/'));
     }
 }
