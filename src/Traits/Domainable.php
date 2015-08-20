@@ -29,7 +29,14 @@ trait Domainable {
 
     public static function getPageSubdomains()
     {
-        return !empty(static::$subdomains) ? static::$subdomains : [];
+        $subdomains = !empty(static::$subdomains) ? static::$subdomains : [];
+        $domain = static::getPageDomain();
+
+        $subdomains = array_map(function ($value) use ($domain) {
+            return ($domain ? $domain . '/' : '') . $value;
+        }, $subdomains);
+
+        return $subdomains;
     }
 
     public function getForcedDomainAttribute()

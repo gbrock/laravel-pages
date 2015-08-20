@@ -11,9 +11,9 @@ class DomainTest extends DatabaseTestCase
     public function test_domained_pages_can_be_created()
     {
         BlogPage::create([
-            'title' => 'Hello, World',
+            'title'   => 'Hello, World',
             'content' => '<p>Hi everybody</p>',
-            'public' => true,
+            'public'  => true,
         ]);
 
         $this->visit('/blog/hello-world')->see('Hi everybody');
