@@ -66,6 +66,6 @@ trait Domainable {
             $slug = $domain . '/' . $slug;
         }
 
-        $this->attributes['slug'] = $slug;
+        $this->attributes['slug'] = trim($slug, '\\/');
     }
 }
