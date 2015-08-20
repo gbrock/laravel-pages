@@ -30,8 +30,6 @@ class Page extends Model implements SluggableInterface {
      */
     protected $casts = [
         'public' => 'boolean',
-        'public_before' => 'date',
-        'public_after' => 'date',
     ];
 
     protected $dates = [
@@ -51,9 +49,9 @@ class Page extends Model implements SluggableInterface {
         'method' => [self::class, 'generateSlug'],
     ];
 
-    protected function generateSlug($string, $separator = '-')
+    protected function generateSlug($string)
     {
-        $result = strtolower(preg_replace('/[^a-z0-9\-_\/]+/i', $separator, $string));
+        $result = strtolower(preg_replace('/[^a-z0-9\-_\/]+/i', config('pages.slug_separator', '-'), $string));
         $result = trim($result, '-');
         return preg_replace('/\/\-/', '/', $result);
     }
